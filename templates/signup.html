@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - VOIP Company</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+        }
+        .captcha-container {
+            display: flex;
+            align-items: center;
+        }
+        .captcha-container img {
+            margin-right: 10px;
+            border: 1px solid #ddd;
+            height: 60px;  /* Ensure this matches the image height */
+        }
+    </style>
+    <script>
+        function validatePassword() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm_password').value;
+            let errorMessage = '';
+
+            if (password.length < 8) {
+                errorMessage += '• Password must be at least 8 characters long\n';
+            }
+            if (!/[A-Z]/.test(password)) {
+                errorMessage += '• Password must contain at least one upper case character\n';
+            }
+            if (!/[a-z]/.test(password)) {
+                errorMessage += '• Password must contain at least one lower case character\n';
+            }
+            if (password !== confirmPassword) {
+                errorMessage += '• Passwords do not match\n';
+            }
+
+            if (errorMessage) {
+                alert(errorMessage);
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Sign Up</h1>
+        <form action="/signup" method="POST" onsubmit="return validatePassword()">
+            <div class="form-group">
+                <label for="first_name">First Name *</label>
+                <input type="text" id="first_name" name="first_name" required>
+            </div>
+            <div class="form-group">
+                <label for="last_name">Last Name *</label>
+                <input type="text" id="last_name" name="last_name" required>
+            </div>
+            <div class="form-group">
+                <label for="company_name">Company Name</label>
+                <input type="text" id="company_name" name="company_name">
+            </div>
+            <div class="form-group">
+                <label for="street_address">Street Address *</label>
+                <input type="text" id="street_address" name="street_address" required>
+            </div>
+            <div class="form-group">
+                <label for="city">City *</label>
+                <input type="text" id="city" name="city" required>
+            </div>
+            <div class="form-group">
+                <label for="state">State/Province *</label>
+                <input type="text" id="state" name="state" required>
+            </div>
+            <div class="form-group">
+                <label for="country">Country *</label>
+                <input type="text" id="country" name="country" required>
+            </div>
+            <div class="form-group">
+                <label for="zip">ZIP/Postal Code *</label>
+                <input type="text" id="zip" name="zip" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number *</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm_email">Confirm Email *</label>
+                <input type="email" id="confirm_email" name="confirm_email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password *</label>
+                <input type="password" id="password" name="password" minlength="8" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm_password">Confirm Password *</label>
+                <input type="password" id="confirm_password" name="confirm_password" minlength="8" required>
+            </div>
+            <div class="form-group">
+                <label for="security_code">Security Code *</label>
+                <div class="captcha-container">
+                    <img src="/captcha" alt="Captcha Image">
+                    <input type="text" id="security_code" name="security_code" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit">Sign Up</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
